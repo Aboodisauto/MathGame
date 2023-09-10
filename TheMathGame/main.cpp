@@ -22,6 +22,12 @@ int ReadNumberOfQuestions(stGameStats Rounds){
     do{
     cout << "How Many Question Do You Want ? " << endl;
     cin >> Rounds.NumberOfQuestions;
+    while(cin.fail()){
+        cin.clear();
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        cout << "Invalid Number, Enter a valid One" << endl;
+        cin >> Rounds.NumberOfQuestions;
+    }
     }while(Rounds.NumberOfQuestions < 0);
     return Rounds.NumberOfQuestions;
 }
@@ -30,6 +36,12 @@ enDifficulty ChooseDifficulty(stGameStats Stats){
     do{
         cout << "Choose Your Difficulty: [1]Easy [2]Normal [3]Hard [4]Mix :" << endl;
         cin >> Diffi;
+        while(cin.fail()){
+            cin.clear();
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            cout << "Can you enter a number: " << endl;
+            cin >> Diffi;
+        }
         Stats.Difficult = (enDifficulty)Diffi;
     }while(Diffi < 1 || Diffi > 4);
     return  Stats.Difficult;
@@ -39,6 +51,12 @@ enOPType ChooseOperation(stGameStats Stats){
     do{
         cout << "Enter Your Operation Type: [1]Add,[2]Minus,[3]Mul,[4]Div,[5]Mix" << endl;
         cin >> Op;
+        while(cin.fail()){
+            cin.clear();
+            cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+            cout << "Enter a valid Number Between 1-5";
+            cin >> Op;
+        }
         Stats.OperationType = (enOPType)Op;
     }while(Op > 5 || Op < 0);
     return Stats.OperationType;
@@ -82,6 +100,12 @@ void GenerateQuestion(stRounds &Rounds,stGameStats Stats){
 int GetAnswerUser(){
     int Number;
     cin >> Number;
+    while(cin.fail()){
+        cin.clear();
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        cout << "Can You enter a valid Number: "<< endl;
+        cin >> Number;
+    }
     return Number;
 }
 char IfMixs(int Number){
